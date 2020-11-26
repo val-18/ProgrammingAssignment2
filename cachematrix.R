@@ -2,29 +2,31 @@
 ## functions do
 
 ## Write a short comment describing this function
+## makeCacheMatrix: This function creates a special "matrix" 
 makeCacheMatrix <- function(x = matrix()) {
   i <- NULL
-  set <- function(y){
+  set <- function(y) {
     x <<- y
     i <<- NULL
   }
   get <- function() x
-  setInverse <- function(inverse) i <<- inverse
-  getInverse <- function() i
-  list(set = set, get = get, setInverse = setInverse, getInverse = getInverse)
+  setinverse <- function(inverse) i <<- inverse
+  getinverse <- function() i
+  list(set = set, get = get,
+       setinverse = setinverse,
+       getinverse = getinverse)
 }
 
 
-
-cachematrix <- function(x, ...) {
-  i <- x$getInverse()
+## cacheSolve: This function computes the inverse of the special "matrix" returned by makeCacheMatrix above
+cacheSolve() <- function(x, ...) {
+  i <- x$getinverse()
   if(!is.null(i)) {
     message("getting cached data")
     return(i)
   }
   data <- x$get()
   i <- solve(data, ...)
-  x$setmean(i)
+  x$setinverse(i)
   i
 }
-
